@@ -12,7 +12,7 @@ angular.module('gservice', [])
         // Array of locations obtained from API calls
         var locations = [];
 
-        // Selected location (initialize to center of USA)
+        // Selected location (initialize to center of Israel)
         var selectedLat = 32.04;
         var selectedLong = 34.46;
 
@@ -43,7 +43,7 @@ angular.module('gservice', [])
 
                 // Then, initialize the map -- noting that a filter was used (to mark icons yellow)
                 initialize(latitude, longitude, true);
-            }
+                            }
 
             // If no filter is provided in the refresh() call...
             else {
@@ -113,8 +113,98 @@ angular.module('gservice', [])
 
         // Initializes the map
         var map;
-        var initialize = function (latitude, longitude, filter) {
+        var geocoder = new google.maps.Geocoder();
 
+        googleMapService.codeAddress = function (filter, address) {
+            var address = document.getElementById('address').value;
+            geocoder.geocode({'address': address}, function (results, status) {
+                if (status == 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    console.log("from codeAddress in gservice");
+                    console.log(results);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });// end if(status == OK)
+
+                }
+
+                else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+
+                // If a filter was used set the icons yellow, otherwise blue
+
+
+                if (filter) {
+
+                    icon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+
+                }
+                else {
+                    icon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+                }
+
+                // Loop through each location in the array and place a marker
+                locations.forEach(function (n, i) {
+
+                    var marker = new google.maps.Marker({
+                        position: n.latlon,
+                        map: map,
+                        title: "Big Map",
+                        icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                    });
+
+                    // For each marker created, add a listener that checks for clicks
+                    google.maps.event.addListener(marker, 'click', function (e) {
+
+                        // when clicked, open the selected marker's message
+                        currentSelectedMarker = n;
+                        n.message.open(map, marker);
+
+                    }); // end google.maps.event.addListener(...,function(e){...
+
+                }); // end locations.forEach(function(...))
+
+                // Bouncing red marker logic
+
+
+                // Function for moving to a selected location
+                map.panTo(new google.maps.LatLng(latitude, longitude));
+
+                // Clicking on the Map moves the bouncing red marker
+                google.maps.event.addListener(map, 'click', function (e) {
+                    var marker = new google.maps.Marker({
+                        position: e.latLng,
+                        animation: google.maps.Animation.BOUNCE,
+                        map: map,
+                        icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+
+                    });
+
+                    // When a new spot is selected, delete the old red bouncing marker
+                    if (lastMarker) {
+                        lastMarker.setMap(null);
+                    }
+
+                    // create a new red bouncing marker and move to it
+                    lastMarker = marker;
+                    map.panTo(marker.position);
+
+                    // Update broadcasted variable
+                    // (lets the panel know to change their lat, long values)
+                    googleMapService.clickLat = marker.getPosition().lat();
+                    googleMapService.clickLong = marker.getPosition().lng();
+
+                    $rootScope.$broadcast('clicked');
+
+                }); // end google.maps.event.addListener(map, 'click', function(e){...
+
+            });
+        };// end var codeAddress = function(...)
+
+        var initialize = function (latitude, longitude, filter) {
+            var geocoder = new google.maps.Geocoder();
             // Uses the selected lat, long as a starting point
             var myLatLong = {lat: selectedLat, lng: selectedLong};
 

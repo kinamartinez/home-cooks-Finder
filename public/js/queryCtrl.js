@@ -41,7 +41,8 @@ queryCtrl.controller('queryCtrl', function ($scope, $log, $http, $rootScope, geo
             female: $scope.formData.female,
             other: $scope.formData.other,
             favlang: $scope.formData.favlang,
-            reqVerified: $scope.formData.verified
+            reqVerified: $scope.formData.verified,
+
         };
 
         // Post the queryBody to the /query POST route to retrieve the filtered results
@@ -57,6 +58,33 @@ queryCtrl.controller('queryCtrl', function ($scope, $log, $http, $rootScope, geo
                 console.log(queryResults);
 // Pass the filtered results to the Google Map Service and refresh the map
                 gservice.refresh(queryBody.latitude, queryBody.longitude, queryResults);
+
+                // Count the number of records retrieved for the panel-footer
+                $scope.queryCount = queryResults.length;
+            })
+            .error(function (queryResults) {
+                console.log('Error ' + queryResults);
+            })
+    };
+    $scope.codeAddress = function () {
+        queryBody = {
+            distance: parseFloat($scope.formData.distance),
+            favlang: $scope.formData.favlang,
+            reqVerified: $scope.formData.verified,
+            address: $scope.formData.address
+        };
+        $http.post('/query', queryBody)
+
+        // Store the filtered results in queryResults
+            .success(function (queryResults) {
+
+                // Query Body and Result Logging
+                console.log("QueryBody: codeAddress");
+                console.log(queryBody);
+                console.log("QueryResults: codeAddress");
+                console.log(queryResults);
+// Pass the filtered results to the Google Map Service and refresh the map
+                gservice.refresh(queryBody, queryResults);
 
                 // Count the number of records retrieved for the panel-footer
                 $scope.queryCount = queryResults.length;
