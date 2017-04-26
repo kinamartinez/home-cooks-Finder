@@ -3,7 +3,7 @@ var app = angular.module('meanMapApp', ['ui.router', 'addCtrl', 'queryCtrl', 'ge
 
 
 // Configures Angular routing -- showing the relevant view and controller when needed.
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $stateProvider
 
