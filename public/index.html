@@ -4,21 +4,53 @@
 <head>
     <base href="/">
     <meta charset="utf-8">
-    <title>Home Cooks</title>
+    <title>The Home Cook</title>
     <meta name="description" content="An example demonstrating Google Map integration with MEAN Apps">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS -->
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="shortcut icon" href="/favicon.ico?v=5">
     <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lobster" />
     <!-- Holder JS -->
     <script src="../bower_components/holderjs/holder.js"></script>
     <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARNSOYROPJTbzUN5bAgOPZ9fL_DkuPhIo"></script>
     <!--&lt;!&ndash; Modernizr &ndash;&gt;-->
     <!--<script src="../bower_components/modernizr/bin/modernizr"></script>-->
-
 </head>
-<body>
+<body ng-app="meanMapApp">
+<div class="container" ng-controller="addCtrl">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" ui-sref="home">HomeCook</a>
+                    <button type="button" ng-show="currentUser.username" ng-click="logout()" class="btn btn-default navbar-btn">Log Out</button>
+                    <a type="button" ui-sref="login" ng-hide="currentUser.username" class="btn btn-default navbar-btn">Log In</a>
+                    <a type="button" ui-sref="join" ng-hide="currentUser.username" class="btn btn-default navbar-btn">Register</a>
+                </div>
+                <p class="navbar-text">{{currentUser.username}}</p>
+            </div>
+        </nav>
+        <ui-view></ui-view>
+</div>
+
+<div class="register">
+     <div class="col-lg-12">
+        <button class="btn btn-danger btn-md pull-right"></i>REGISTER</button>
+     </div>
+</div>
+<div class="cover">
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="hometext">
+                <h1>The Home Cook</h1>
+                 <hr>
+                <button class="btn btn-default btn-lg"></i>What's on the menu?</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="header">
         <ul class="nav nav-pills pull-right">
@@ -42,7 +74,7 @@
     <!-- Footer -->
     <div class="footer">
         <p class="text-center"><span class="glyphicon glyphicon-check"></span>
-           <a href="https://github.com/">Github Repo</a></p>
+           <a href="about.html">About the developers</a></p>
     </div>
 </div>
 <!-- Angular Scripts -->

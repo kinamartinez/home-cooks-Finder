@@ -21,6 +21,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
             templateUrl: 'partials/queryForm.html',
 
             // All else forward to the Join Home Cook Team Control Panel
+        })
+        .state('login', {
+            url: '/login',
+            controller: 'addCtrl',
+            templateUrl: 'partials/login.html',
+
+            // All else forward to the Join Home Cook Team Control Panel
         });
-    $urlRouterProvider.otherwise('/join');
+    $urlRouterProvider.otherwise('/');
 }]);

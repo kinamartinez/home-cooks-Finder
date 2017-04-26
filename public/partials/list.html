@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <base href="/">
+    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body ng-app="homecook" ng-controller="authController">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-7 pull-left">
+                <div class="col-xs-3 pull-left"><img src="{{img_food}}" alt=""/></div>
+                <div class="col-xs-4">
+                    <h5>{{Dishe}}</h5> - <h5>{{Price}}</h5> <br/>
+                    <span class="glyphicon glyphicon-thumbs-up" ng-click="upvote(comment)"></span>
+                    <span class="glyphicon glyphicon-thumbs-down" ng-click="downvote(comment)"></span> - <!--  <ui-view>template reviews to do</ui-view> -->
+                    <button ui-sref="comment" class="btn btn-primary" type="submit">Reviews</button><br/>
+                    <h5>{{Location}}</h5> - <h5>{{DietaryRestrictions}}</h5> <br/>
+                    <a ui-sref="order" target="_blank">Order...</a>
+                    <!-- display last recent review with an <ui-view></ui-view>-->
+                </div>
+            </div>
+            <div class="col-xs-5 pull-right" id="map"><img src="" alt=""/>blabla</div>
+        </div>
+    </div>
+    
+    <script src="angular/angular.js"></script>
+    <script src="angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services/postFactory.js"></script>
+    <script src="js/services/authFactory.js"></script>
+    <script src="js/controllers/authController.js"></script>
+    <script src="js/controllers/navController.js"></script>
+    <script src="js/controllers/postController.js"></script>
+    <script src="js/controllers/commentController.js"></script>
+</body>
+
+</html>
