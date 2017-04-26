@@ -16,7 +16,7 @@ var UserSchema = new Schema({
     cook: { type: Boolean, default: false },
     birhtday: { type: Date },
     image: { type: String },
-    foods: [foods.schema],
+    foods: [{ type: Schema.Types.ObjectId, ref: 'food' }],
     location: { type: [Number] }, // [Long, Lat]%
     adress: {
         street: { type: String },

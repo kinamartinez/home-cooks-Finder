@@ -24,26 +24,21 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" ui-sref="home"><span class="logo-text">Home Cook</span>
-                        <a type="button" ui-sref="cookprofile" ng-hide="currentUser.username" class="btn btn-default navbar-btn">Cook Profile</a>
-                        <a type="button" ui-sref="userprofile" ng-hide="currentUser.username" class="btn btn-default navbar-btn">User Profile</a>
+                    <a class="navbar-brand" ui-sref="map"><span class="logo-text">Home Cook</span>
+                        <a type="button" ui-sref="cookprofile"  class="btn btn-default navbar-btn">Cook Profile</a>
+                        <a type="button" ui-sref="userprofile"  class="btn btn-default navbar-btn">User Profile</a>
                     </a>
                     <a type="button" class="btn btn-default navbar-btn">Log Out</a>
-                    <a type="button" ui-sref="login" ng-hide="currentUser.username" class="btn btn-default navbar-btn">Log In</a>
-                    <a type="button" ui-sref="join" ng-hide="currentUser.username" class="btn btn-default navbar-btn">Register</a>
-                    <a type="button" ui-sref="order" ng-hide="currentUser.username" class="btn btn-default navbar-btn">Order</a>
-                    <a type="button" ui-sref="list" ng-hide="currentUser.username" class="btn btn-default navbar-btn">List</a>
+                    <a type="button" ui-sref="login"  class="btn btn-default navbar-btn">Log In</a>
+                    <a type="button" ui-sref="register"  class="btn btn-default navbar-btn">Register</a>
+                    <a type="button" ui-sref="order"  class="btn btn-default navbar-btn">Order</a>
+                    <a type="button" ui-sref="list"  class="btn btn-default navbar-btn">List</a>
                 </div>
-                <p class="navbar-text">{{currentUser.username}}</p>
+                <p class="navbar-text">{{currentUser.username.username}}PLEASE WORK</p>
             </div>
         </nav>
         <ui-view></ui-view>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p class="text-center"><span class="glyphicon glyphicon-check"></span>
-           <a href="about.html">About the developers</a></p>
-    </div>
 </div>
 
 
@@ -57,6 +52,7 @@
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/addCtrl.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/gservice.js"></script>
 <script src="js/queryCtrl.js"></script>
 </body>
