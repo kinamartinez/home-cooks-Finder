@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var review = require('../models/Review')
 
 var FoodSchema = new Schema({
-    cookName: { type: String, required: true },
+    cookName: [{ type: Schema.Types.ObjectId, ref: 'users' }],
     foodName: { type: String, required: true },
     image: { type: String, required: true },
     dietaryOption: {

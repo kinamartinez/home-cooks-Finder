@@ -1,6 +1,9 @@
 // Dependencies
 const mongoose = require('mongoose');
 const User = require('./models/User.js');
+var express = require('express');
+var passport = require('passport');
+var router = express.Router();
 
 // Opens App Routes
 module.exports = function(app) {
@@ -17,7 +20,7 @@ module.exports = function(app) {
                 return res.send(err);
             }
             // If no errors are found, it responds with a JSON of all users
-            console.log('**** from here ****')
+            // console.log('**** from here ****')
             res.json(users);
         });
     });
@@ -26,12 +29,12 @@ module.exports = function(app) {
     // --------------------------------------------------------
     // Provides method for saving new users in the db
     app.post('/users', function(req, res) {
-        console.log('**** info from form ****')
-        console.log(req.body)
+        // console.log('**** info from form ****')
+        // console.log(req.body)
             // Creates a new User based on the Mongoose schema and the post bo.dy
         const newuser = new User(req.body);
-        console.log('***** new data ****')
-        console.log(newuser)
+        // console.log('***** new data ****')
+        // console.log(newuser)
             // New User is saved in the db.
         newuser.save(function(err) {
             if (err) {
@@ -41,6 +44,32 @@ module.exports = function(app) {
             res.json(req.body);
         });
     });
+
+app.post('/login', function(req,res) {
+    console.log("hello" + req.body);
+    console.log("hello" + req);
+    res.send(req.body)
+    console.log("wtfffff" + req.body.user)
+})
+// router.post('/login', passport.authenticate('local'), function(req, res) {
+//   // If this function gets called, authentication was successful.
+//   // `req.user` contains the authenticated user.
+//   console.log(req.body);
+//   res.send(req.body)
+// });
+
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.send('Logged Out');
+});
+
+app.get('/currentuser', function(req, res) {
+  if (req.body) {
+    res.send(req.body.username)
+  } else {
+    res.send(null)
+  }
+});
 
     // Retrieves JSON records for all users who meet a certain set of query conditions
     app.post('/query/', function(req, res) {

@@ -8,8 +8,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
     $stateProvider
 
     // Join Team Control Panel
-        .state('join', {
-            url: '/addForm',
+        .state('register', {
+            url: '/register',
             controller: 'addCtrl',
             templateUrl: 'partials/addForm.html'
         })
@@ -23,9 +23,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
             controller: 'addCtrl',
             templateUrl: 'partials/login.html'
         })
-        .state('home', {
-          url: '/home',
-          templateUrl: '/partials/home.html',
+        .state('map', {
+          url: '/map',
+          templateUrl: '/partials/searchmap.html',
           controller: 'addCtrl'
         })
         .state('comment', {
@@ -33,11 +33,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', functio
           templateUrl: '/templates/comments.html',
           controller: 'addCtrl'
         })
-        .state('register', {
-          url: '/register',
-          templateUrl: '/partials/register.html',
-          controller: 'addCtrl'
-        })   
         .state('cookprofile', {
           url: '/cookProfile',
           templateUrl: '/partials/cookprofile.html',

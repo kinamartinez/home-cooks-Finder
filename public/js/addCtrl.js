@@ -1,6 +1,10 @@
 // Creates the addCtrl Module and Controller. Note that it depends on the 'geolocation' module and service.
 const addCtrl = angular.module('addCtrl', ['geolocation']);
-addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, gservice) {
+addCtrl.controller('addCtrl', function($scope, $http, $rootScope, $state, geolocation, gservice, authfactory) {
+
+    $scope.currentUser = {};
+
+
 
     // Initializes Variables
     // ----------------------------------------------------------------------------
@@ -78,4 +82,15 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
                 console.log('Error: ' + data);
             });
     };
+
+    $scope.login = function() {
+    authfactory.login($scope.user)
+      .then(function() {
+        console.log("scope user is", $scope);
+        $rootScope.currentUser = $scope.user;
+        $state.go('map');
+      }, function(err) {
+        alert(err.data);
+      });
+  };
 });
