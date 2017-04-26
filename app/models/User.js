@@ -1,7 +1,7 @@
 // Pulls Mongoose dependency for creating schemas
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt')
+//var bcrypt = require('bcrypt')
 var foods = require('../models/Food')
 
 // Creates a User Schema. This will be the basis of how user data is stored in the db
@@ -33,30 +33,30 @@ var UserSchema = new Schema({
 });
 
 // Sets the created_at parameter equal to the current time
-UserSchema.pre('save', function save(next) {
-    const user = this;
-    if (!user.isModified('password')) { return next(); }
-    bcrypt.genSalt(10, (err, salt) => {
-        if (err) { return next(err); }
-        bcrypt.hash(user.password, salt, null, (err, hash) => {
-            if (err) { return next(err); }
-            user.password = hash;
-            next();
-        });
-    });
-});
+// UserSchema.pre('save', function save(next) {
+//     const user = this;
+//     if (!user.isModified('password')) { return next(); }
+//     bcrypt.genSalt(10, (err, salt) => {
+//         if (err) { return next(err); }
+//         bcrypt.hash(user.password, salt, null, (err, hash) => {
+//             if (err) { return next(err); }
+//             user.password = hash;
+//             next();
+//         });
+//     });
+// });
 
-/**
- * Helper method for validating user's password.
- */
-UserSchema.methods.comparePassword = function comparePassword(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-        cb(err, isMatch);
-    });
-};
+// /**
+//  * Helper method for validating user's password.
+//  */
+// UserSchema.methods.comparePassword = function comparePassword(candidatePassword, cb) {
+//     bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+//         cb(err, isMatch);
+//     });
+// };
 // Indexes this schema in 2dsphere format (critical for running proximity searches)
 UserSchema.index({ location: '2dsphere' });
 // Exports the UserSchema for use elsewhere. Sets the MongoDB collection to be used as: "Home-Cook-users"
 
-var User = mongoose.model('Home-Cook-users', UserSchema);
+var User = mongoose.model('Users', UserSchema);
 module.exports = User;

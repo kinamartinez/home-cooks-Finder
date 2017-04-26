@@ -56,7 +56,8 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
             // age: $scope.formData.age,
             lastName: $scope.formData.lastName,
             password: $scope.formData.password,
-            role: $scope.formData.role
+            role: $scope.formData.role,
+            location: [$scope.formData.latitude, $scope.formData.longitude]
         };
         console.log('getting there 1')
             // Saves the user data to the db
