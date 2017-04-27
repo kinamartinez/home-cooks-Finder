@@ -11,7 +11,11 @@ var UserSchema = new Schema({
     location: {type: [Number], required: true}, // [Long, Lat]
     htmlverified: String,
     created_at: {type: Date, default: Date.now},
-    updated_at: {type: Date, default: Date.now}
+    updated_at: {type: Date, default: Date.now},
+    socialId: String,
+    provider: String,
+    email: String,
+    loginCount: Number
 });
 
 // Sets the created_at parameter equal to the current time

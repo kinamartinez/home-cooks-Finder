@@ -1,0 +1,22 @@
+
+    <div  class="container">
+        <div ng-repeat="hardCodeUser in hardCodeUsers" class="row">
+            <div class="col-xs-7 pull-left">
+                <div class="col-xs-3 pull-left"><img ng-src="{{hardCodeUser.img}}" alt=""/></div>
+                <div class="col-xs-4">
+                    <h2>{{hardCodeUser.name}}</h2>
+                    <h5>{{hardCodeUser.dish}}</h5> -<h5>{{hardCodeUser.dietaryOptions}}</h5>- <h5>{{hardCodeUser.Price}}NIS</h5> <br/>
+                    <span class="glyphicon glyphicon-thumbs-up" ></span>
+                    <span class="glyphicon glyphicon-thumbs-down"></span> -
+                    <!--  <ui-view>template reviews to do</ui-view> -->
+                    <button ui-sref="comment" class="btn btn-primary" type="submit">Reviews</button>
+                    <br/>
+                    <h5>{{hardCodeUser.locationHC}}</h5> - <h5>{{hardCodeUser.dietaryOptions}}</h5> <br/>
+                    <a ui-sref="order" target="_blank">Order...</a>
+                    <!-- display last recent review with an <ui-view></ui-view>-->
+                </div>
+            </div>
+            <div class="col-xs-5 pull-right" id="map"><img src="" alt=""/>blabla</div>
+        </div>
+    </div>
+

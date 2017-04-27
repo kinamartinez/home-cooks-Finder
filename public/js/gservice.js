@@ -4,6 +4,7 @@
 angular.module('gservice', [])
     .factory('gservice', function ($rootScope, $http) {
 
+
         // Initialize Variables
         // ---------------------------------------------------
         // Service our factory will return
@@ -43,7 +44,7 @@ angular.module('gservice', [])
 
                 // Then, initialize the map -- noting that a filter was used (to mark icons yellow)
                 initialize(latitude, longitude, true);
-                            }
+            }
 
             // If no filter is provided in the refresh() call...
             else {

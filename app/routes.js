@@ -1,6 +1,8 @@
 // Dependencies
 const mongoose = require('mongoose');
 const User = require('./model.js');
+const expressJWT = require('express-jwt');
+const ensureAuthenticated = expressJWT({ secret: 'thisIsTopSecret' });
 
 // Opens App Routes
 module.exports = function (app) {

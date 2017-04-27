@@ -7,6 +7,7 @@ queryCtrl.controller('queryCtrl', function ($scope, $log, $http, $rootScope, geo
     $scope.formData = {};
     var queryBody = {};
 
+
     // Functions
     // ----------------------------------------------------------------------------
 

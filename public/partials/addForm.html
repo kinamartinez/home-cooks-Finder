@@ -20,8 +20,14 @@
                 <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
                 <div class="form-group">
                     <label for="username">Username <span class="badge">All fields required</span></label>
-                    <input type="text" class="form-control" id="username" placeholder="OldandGold" ng-model="formData.username" required>
+                    <input type="text" class="form-control" id="username" placeholder="Nickname" ng-model="formData.username" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="fullname">Full Name </label>
+                    <input type="text" class="form-control" id="fullname" placeholder="First Name and Last Name" ng-model="formData.fullname" required>
+                </div>
+
                 <label class="radio control-label">Gender</label>
                 <div class="radio">
                     <label>
@@ -47,7 +53,7 @@
                 <!--</div>-->
                 <div class="form-group">
                     <label for="language">Type of food</label>
-                    <input type="text" class="form-control" id="language" placeholder="Fortran" ng-model="formData.favlang" required>
+                    <input type="text" class="form-control" id="language" placeholder="Type of food" ng-model="formData.favlang" required>
                 </div>
                 <div class="form-group">
                     <label for="latitude">Latitude</label>
